@@ -31,7 +31,8 @@ tmux send-keys -t "marzban2" Enter
 sleep 3
 tmux kill-session -t "marzban2"
 
-wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban/nginx.conf -O /etc/nginx/nginx.conf 
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban/nginx.conf -O /etc/nginx/nginx.conf
+service nginx restart
 
 privatekey=$(docker exec marzban-marzban-1 xray x25519 | grep 'Private key' | awk '{print $3}')
 openssl_hex=$(openssl rand -hex 8)
