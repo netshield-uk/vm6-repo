@@ -1,4 +1,5 @@
 apt update -y
+sudo systemctl daemon-reexec
 apt install sudo curl tmux nginx python3 python3-pip -y
 pip install marzpy --upgrade
 
