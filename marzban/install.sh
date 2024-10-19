@@ -5,8 +5,8 @@ pip install marzpy --upgrade --break-system-packages
 
 export HOME=/root
 
-serverip="178.250.191.208"
-password="gP8xM6hD8qqC"
+serverip="0.0.0.0"
+password="password"
 
 cd /root
 
