@@ -1,5 +1,6 @@
 apt update -y
 apt install sudo curl tmux nginx python3 python3-pip -y
+pip install marzpy --upgrade
 
 export HOME=/root
 
@@ -29,9 +30,10 @@ tmux send-keys -t "marzban2" Enter
 sleep 3
 tmux kill-session -t "marzban2"
 
-pip install marzpy --upgrade
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban/nginx.conf -O /etc/nginx/nginx.conf 
 
 privatekey=$(docker exec marzban-marzban-1 xray x25519 | grep 'Private key' | awk '{print $3}')
 openssl_hex=$(openssl rand -hex 8)
 
-python3 marzban-config.py --password $password --privatekey $privatekey --openssl_hex $openssl_hex
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban/marzban-config.py -O /tmp/marzban-config.py
+python3 /tmp/marzban-config.py --password $password --privatekey $privatekey --openssl_hex $openssl_hex
