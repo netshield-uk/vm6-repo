@@ -1,12 +1,13 @@
 apt update -y
+apt install tmux -y
 sudo systemctl daemon-reexec
-apt install sudo curl tmux nginx python3 python3-pip -y
+apt install sudo curl nginx python3 python3-pip -y
 pip install marzpy --upgrade --break-system-packages
 
 export HOME=/root
 
-serverip="0.0.0.0"
-password="password"
+serverip="($IP)"
+password="($PASS)"
 
 cd /root
 
