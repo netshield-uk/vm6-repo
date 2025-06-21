@@ -84,3 +84,5 @@ tmux new -d -s "marzban3"
 sleep 2
 tmux send-keys -t "marzban3" 'marzban restart > /tmp/marzban_log.txt' Enter
 while sleep 5; do cat /tmp/marzban_log.txt | grep -q "Press CTRL+C" && echo true && rm -f /tmp/marzban_log.txt && tmux kill-session -t "marzban3" && break || echo false; done
+
+echo "Install done!"
