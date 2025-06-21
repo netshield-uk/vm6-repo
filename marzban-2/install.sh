@@ -73,4 +73,17 @@ sed -i "s|<(REPLACE_IP_V4)>|$serverip|g" /etc/nginx/nginx.conf
 service nginx restart
 
 privatekey=$(docker exec marzban-marzban-1 xray x25519 | grep 'Private key' | awk '{print $3}')
-openssl_hex=$(openssl rand -hex 8)
+shortids=$(openssl rand -hex 8)
+
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban-2/nginx.conf -O /var/lib/marzban/xray_config.json
+
+sed -i "s|<(REPLACE_LISTEN_IP)>|$serverip|g" /var/lib/marzban/xray_config.json
+sed -i "s|<(REPLACE_SNI)>|$sni|g" /var/lib/marzban/xray_config.json
+sed -i "s|<(REPLACE_PRIVATE_KEY)>|$privatekey|g" /var/lib/marzban/xray_config.json
+sed -i "s|<(REPLACE_SHORT_IDS)>|$shortids|g" /var/lib/marzban/xray_config.json
+
+tmux new -d -s "marzban3"
+sleep 2
+tmux send-keys -t "marzban3" 'marzban restart > /tmp/marzban_log.txt' Enter
+while sleep 5; do cat /tmp/marzban_log.txt | grep -q "Press CTRL+C" && echo true && rm -f /tmp/marzban_log.txt && tmux kill-session -t "marzban3" && break || echo false; done
+
