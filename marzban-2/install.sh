@@ -39,7 +39,7 @@ apt install tmux curl nginx -y
 
 serverip="($IP)"
 password="($PASS)"
-# *TODO: Reality - Scanner*
+# *TODO: Reality TLS Scanner*
 sni="yandex.ru"
 
 export HOME=/root
