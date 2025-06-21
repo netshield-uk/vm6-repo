@@ -38,6 +38,9 @@ echo
 export HOME=/root
 cd /root
 
+mkdir /tmp/tmux-0
+chgrp root /tmp/tmux-0 && chown root /tmp/tmux-0
+
 apt update -y
 apt install tmux curl nginx -y
 
