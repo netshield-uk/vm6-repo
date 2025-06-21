@@ -86,7 +86,7 @@ sed -i "s|<(REPLACE_SHORT_IDS)>|$shortids|g" /var/lib/marzban/xray_config.json
 rm -rf /tmp/tmux-0/
 tmux new -d -s "marzban3"
 sleep 2
-tmux send-keys -t "marzban3" 'marzban restart >> /tmp/marzban_install.log' Enter
+tmux send-keys -t "marzban3" 'marzban restart > /tmp/marzban_install.log' Enter
 while sleep 5; do cat /tmp/marzban_install.log | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban3" && break || echo false; done
 
 echo "ENG:" > /root/marzban.txt
