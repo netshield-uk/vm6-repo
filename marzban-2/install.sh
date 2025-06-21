@@ -35,11 +35,11 @@ echo
 echo "=== Recipe ${RNAME} started at $(date) ==="
 echo
 
-export HOME=/root
-cd /root
-
 apt update -y
 apt install tmux curl nginx -y
+
+export HOME=/root
+cd /root
 
 serverip="($IP)"
 password="($PASS)"
