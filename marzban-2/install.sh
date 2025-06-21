@@ -15,7 +15,7 @@ set -x
 
 LOG_PIPE=/tmp/log.pipe.$$                                                                                                                                                                                                                    
 mkfifo ${LOG_PIPE}
-LOG_FILE=/tmp/${RNAME}_command_log.log
+LOG_FILE=/tmp/${RNAME}_command.log
 touch ${LOG_FILE}
 chmod 600 ${LOG_FILE}
 
@@ -47,8 +47,8 @@ cd /root
 
 tmux new -d -s "marzban"
 sleep 2
-tmux send-keys -t "marzban" 'bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install > /tmp/marzban_install_log.txt' Enter
-while sleep 5; do cat /tmp/marzban_install_log.txt | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban" && break || echo false; done
+tmux send-keys -t "marzban" 'bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install > /tmp/marzban_install.log' Enter
+while sleep 5; do cat /tmp/marzban_install.log | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban" && break || echo false; done
 
 tmux new -d -s "marzban2"
 sleep 3
@@ -82,8 +82,8 @@ sed -i "s|<(REPLACE_SHORT_IDS)>|$shortids|g" /var/lib/marzban/xray_config.json
 
 tmux new -d -s "marzban3"
 sleep 2
-tmux send-keys -t "marzban3" 'marzban restart >> /tmp/marzban_install_log.txt' Enter
-while sleep 5; do cat /tmp/marzban_install_log.txt | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban3" && break || echo false; done
+tmux send-keys -t "marzban3" 'marzban restart >> /tmp/marzban_install.log' Enter
+while sleep 5; do cat /tmp/marzban_install.log | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban3" && break || echo false; done
 
 echo "ENG:" > /root/marzban.txt
 echo "Marzban Control Panel (https://github.com/Gozargah/Marzban) was successfully installed:\r\nURL - http://$serverip:7575/dashboard/\nLogin - admin\nPassword - $password" >> /root/marzban.txt
