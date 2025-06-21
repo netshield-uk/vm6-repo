@@ -48,7 +48,7 @@ cd /root
 tmux new -d -s "marzban"
 sleep 2
 tmux send-keys -t "marzban" 'bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install > /tmp/marzban_log.txt' Enter
-while sleep 5; do cat /tmp/marzban_log.txt | grep -q "Press CTRL+C" && echo true && rm -f /tmp/marzban_log.txt && tmux kill-session -t "marzban" && break || echo false; done
+while sleep 5; do cat /tmp/marzban_log.txt | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban" && break || echo false; done
 
 tmux new -d -s "marzban2"
 sleep 3
