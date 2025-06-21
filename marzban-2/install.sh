@@ -9,7 +9,7 @@
 # metadata_end
 #
 
-RNAME="Marzban"
+RNAME="marzban"
 
 set -x
 
