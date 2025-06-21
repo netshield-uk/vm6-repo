@@ -73,7 +73,7 @@ service nginx restart
 privatekey=$(docker exec marzban-marzban-1 xray x25519 | grep 'Private key' | awk '{print $3}')
 shortids=$(openssl rand -hex 8)
 
-wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban-2/nginx.conf -O /var/lib/marzban/xray_config.json
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban-2/xray_config.json -O /var/lib/marzban/xray_config.json
 
 sed -i "s|<(REPLACE_LISTEN_IP)>|$serverip|g" /var/lib/marzban/xray_config.json
 sed -i "s|<(REPLACE_SNI)>|$sni|g" /var/lib/marzban/xray_config.json
