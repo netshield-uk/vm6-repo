@@ -37,14 +37,12 @@ echo
 apt update -y
 apt install tmux curl nginx -y
 
-export HOME=/root
-
 serverip="($IP)"
 password="($PASS)"
-
 # *TODO: Reality - Scanner*
 sni="yandex.ru"
 
+export HOME=/root
 cd /root
 
 tmux new -d -s "marzban"
