@@ -10,31 +10,6 @@
 # metadata_end
 #
 
-RNAME="marzban"
-
-set -x
-
-LOG_PIPE=/tmp/log.pipe.$$                                                                                                                                                                                                                    
-mkfifo ${LOG_PIPE}
-LOG_FILE=/tmp/${RNAME}_command.log
-touch ${LOG_FILE}
-chmod 600 ${LOG_FILE}
-
-tee < ${LOG_PIPE} ${LOG_FILE} &
-
-exec > ${LOG_PIPE}
-exec 2> ${LOG_PIPE}
-
-killjobs() {
-	jops="$(jobs -p)"
-	test -n "${jops}" && kill ${jops} || :
-}
-trap killjobs INT TERM EXIT
-
-echo
-echo "=== Recipe ${RNAME} started at $(date) ==="
-echo
-
 apt update -y
 apt install tmux curl nginx -y
 
@@ -51,7 +26,7 @@ sleep 2
 tmux send-keys -t "marzban" 'bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install > /tmp/marzban_install.log' Enter
 while sleep 5; do cat /tmp/marzban_install.log | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban" && break || echo false; done
 
-tmux new -d -s "marzban2" "bash"
+tmux new -d -s "marzban2"
 sleep 3
 tmux send-keys -t "marzban2" "marzban cli admin create --sudo" Enter
 sleep 5
