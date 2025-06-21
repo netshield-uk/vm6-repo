@@ -10,6 +10,34 @@
 # metadata_end
 #
 
+RNAME="marzban"
+
+set -x
+
+LOG_PIPE=/tmp/log.pipe.$$                                                                                                                                                                                                                    
+mkfifo ${LOG_PIPE}
+LOG_FILE=/tmp/${RNAME}_command.log
+touch ${LOG_FILE}
+chmod 600 ${LOG_FILE}
+
+tee < ${LOG_PIPE} ${LOG_FILE} &
+
+exec > ${LOG_PIPE}
+exec 2> ${LOG_PIPE}
+
+killjobs() {
+	jops="$(jobs -p)"
+	test -n "${jops}" && kill ${jops} || :
+}
+trap killjobs INT TERM EXIT
+
+echo
+echo "=== Recipe ${RNAME} started at $(date) ==="
+echo
+
+export HOME=/root
+cd /root
+
 apt update -y
 apt install tmux curl nginx -y
 
@@ -17,9 +45,6 @@ serverip="($IP)"
 password="($PASS)"
 # *TODO: Reality TLS Scanner*
 sni="yandex.ru"
-
-export HOME=/root
-cd /root
 
 tmux new -d -s "marzban"
 sleep 2
