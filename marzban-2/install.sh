@@ -85,4 +85,8 @@ sleep 2
 tmux send-keys -t "marzban3" 'marzban restart >> /tmp/marzban_install_log.txt' Enter
 while sleep 5; do cat /tmp/marzban_install_log.txt | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban3" && break || echo false; done
 
-echo "Install done!"
+echo "ENG:" > /root/marzban.txt
+echo "Marzban Control Panel (https://github.com/Gozargah/Marzban) was successfully installed:\r\nURL - http://$serverip:7575/dashboard/\nLogin - admin\nPassword - $password" >> /root/marzban.txt
+echo "\r\nRUS:" >> /root/marzban.txt
+echo "Панель управления Marzban (https://github.com/Gozargah/Marzban) доступна по следующим данным:\r\nСсылка - http://$serverip:7575/dashboard/\nЛогин - admin\nПароль - $password" >> /root/marzban.txt
+echo "" >> /root/marzban.txt
