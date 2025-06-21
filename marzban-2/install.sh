@@ -41,6 +41,8 @@ export HOME=/root
 
 serverip="($IP)"
 password="($PASS)"
+
+# *TODO: Reality - Scanner*
 sni="yandex.ru"
 
 cd /root
