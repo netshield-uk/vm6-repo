@@ -34,6 +34,15 @@ echo
 echo "=== Recipe ${RNAME} started at $(date) ==="
 echo
 
+apt update -y
+apt install tmux curl nginx -y
+
+export HOME=/root
+
+serverip="($IP)"
+password="($PASS)"
+sni="yandex.ru"
+
 cd /root
 
 tmux new -d -s "marzban"
@@ -57,7 +66,7 @@ tmux send-keys -t "marzban2" Enter
 sleep 3
 tmux kill-session -t "marzban2"
 
-wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban-2/nginx.conf -O /etc/nginx/nginx.conf
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban/nginx.conf -O /etc/nginx/nginx.conf
 service nginx restart
 
 privatekey=$(docker exec marzban-marzban-1 xray x25519 | grep 'Private key' | awk '{print $3}')
