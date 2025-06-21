@@ -46,11 +46,13 @@ password="($PASS)"
 # *TODO: Reality TLS Scanner*
 sni="yandex.ru"
 
+rm -rf /tmp/tmux-0/
 tmux new -d -s "marzban"
 sleep 2
 tmux send-keys -t "marzban" 'bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install > /tmp/marzban_install.log' Enter
 while sleep 5; do cat /tmp/marzban_install.log | grep -q "Press CTRL+C" && echo true && tmux kill-session -t "marzban" && break || echo false; done
 
+rm -rf /tmp/tmux-0/
 tmux new -d -s "marzban2"
 sleep 3
 tmux send-keys -t "marzban2" "marzban cli admin create --sudo" Enter
@@ -81,6 +83,7 @@ sed -i "s|<(REPLACE_SNI)>|$sni|g" /var/lib/marzban/xray_config.json
 sed -i "s|<(REPLACE_PRIVATE_KEY)>|$privatekey|g" /var/lib/marzban/xray_config.json
 sed -i "s|<(REPLACE_SHORT_IDS)>|$shortids|g" /var/lib/marzban/xray_config.json
 
+rm -rf /tmp/tmux-0/
 tmux new -d -s "marzban3"
 sleep 2
 tmux send-keys -t "marzban3" 'marzban restart >> /tmp/marzban_install.log' Enter
