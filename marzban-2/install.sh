@@ -67,6 +67,7 @@ sleep 3
 tmux kill-session -t "marzban2"
 
 wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/marzban-2/nginx.conf -O /etc/nginx/nginx.conf
+sed -i "s|<(REPLACE_IP_V4)>|$serverip|g" /etc/nginx/nginx.conf
 service nginx restart
 
 privatekey=$(docker exec marzban-marzban-1 xray x25519 | grep 'Private key' | awk '{print $3}')
