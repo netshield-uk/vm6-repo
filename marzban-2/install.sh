@@ -2,7 +2,7 @@
 #
 # metadata_begin
 # recipe: Marzban
-# tags: debian12
+# tags: debian11,debian12,ubuntu2204,ubuntu2404
 # revision: 1
 # description_ru: Рецепт установки Marzban (данные находятся в /root/marzban.txt)
 # description_en: Marzban installation recipe (data can be found in /root/marzban.txt)
