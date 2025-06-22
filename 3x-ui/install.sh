@@ -36,15 +36,7 @@ echo "=== Recipe ${RNAME} started at $(date) ==="
 echo
 
 apt update -y
-apt install curl tmux -y
+apt install wget -y
 
-tmux new -d -s "3xui_install"
-tmux send-keys -t "3xui_install" "bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) > /tmp/3x-ui_install.log" Enter
-
-while sleep 5; do cat /tmp/3x-ui_install.log | grep -q "Would you like to customize the Panel Port settings" && echo true && break || echo false; done
-tmux send-keys -t "3xui_install" "y" Enter
-
-while sleep 2; do cat /tmp/3x-ui_install.log | grep -q "Please set up the panel port" && echo true && break || echo false; done
-tmux send-keys -t "3xui_install" "9836" Enter
-
-while sleep 5; do cat /tmp/3x-ui_install.log | grep -q "installation finished" && echo true && tmux kill-session -t "3xui_install" && break || echo false; done
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh -O /tmp/main.sh
+bash main.sh --port 9836
