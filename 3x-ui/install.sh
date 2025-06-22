@@ -46,7 +46,7 @@ tmux send-keys -t "3xui_install" "y" Enter
 sleep 1
 tmux send-keys -t "3xui_install" "9836" Enter
 
-while ! grep -q "x-ui v2.6.0 installation finished, it is running now..." "/tmp/3x-ui_install.log"; do
+while ! grep -q "installation finished" "/tmp/3x-ui_install.log"; do
   sleep 2
 done
 
