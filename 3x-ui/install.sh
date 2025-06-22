@@ -39,4 +39,4 @@ apt update -y
 apt install wget -y
 
 wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh -O /tmp/main.sh
-bash main.sh --port 9836
+bash /tmp/main.sh

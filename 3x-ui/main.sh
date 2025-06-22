@@ -86,13 +86,21 @@ config_after_install() {
     local existing_webBasePath=$(/usr/local/x-ui/x-ui setting -show true | grep -Eo 'webBasePath: .+' | awk '{print $2}')
     local existing_port=$(/usr/local/x-ui/x-ui setting -show true | grep -Eo 'port: .+' | awk '{print $2}')
     local server_ip=$(curl -s https://api.ipify.org)
-    local config_port="9836"
 
     if [[ ${#existing_webBasePath} -lt 4 ]]; then
         if [[ "$existing_hasDefaultCredential" == "true" ]]; then
             local config_webBasePath=$(gen_random_string 15)
             local config_username=$(gen_random_string 10)
             local config_password=$(gen_random_string 10)
+
+            read -rp "Would you like to customize the Panel Port settings? (If not, a random port will be applied) [y/n]: " config_confirm
+            if [[ "${config_confirm}" == "y" || "${config_confirm}" == "Y" ]]; then
+                read -rp "Please set up the panel port: " config_port
+                echo -e "${yellow}Your Panel Port is: ${config_port}${plain}"
+            else
+                local config_port=$(shuf -i 1024-62000 -n 1)
+                echo -e "${yellow}Generated random port: ${config_port}${plain}"
+            fi
 
             /usr/local/x-ui/x-ui setting -username "${config_username}" -password "${config_password}" -port "${config_port}" -webBasePath "${config_webBasePath}"
             echo -e "This is a fresh installation, generating random login info for security concerns:"
