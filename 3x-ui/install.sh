@@ -36,7 +36,6 @@ echo "=== Recipe ${RNAME} started at $(date) ==="
 echo
 
 apt update -y
-apt install wget -y
+apt install curl wget -y
 
-wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh -O /tmp/main.sh
-bash /tmp/main.sh
+bash <(curl -Ls https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh)

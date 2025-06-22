@@ -154,7 +154,7 @@ install_x-ui() {
             exit 1
         fi
     else
-        tag_version=$1
+        tag_version="master"
         tag_version_numeric=${tag_version#v}
         min_version="2.3.5"
 
