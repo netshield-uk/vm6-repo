@@ -38,4 +38,4 @@ echo
 apt update -y
 apt install curl wget -y
 
-bash -c "$(curl -sL https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh)" > /tmp/marzban_install.log
+bash -c "$(curl -sL https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh)" @ install > /tmp/marzban_install.log
