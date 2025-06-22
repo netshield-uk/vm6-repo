@@ -88,7 +88,7 @@ config_after_install() {
     if [[ ${#existing_webBasePath} -lt 4 ]]; then
         if [[ "$existing_hasDefaultCredential" == "true" ]]; then
             local config_webBasePath=$(gen_random_string 15)
-            local config_password=$(gen_random_string 10)
+            local config_password=$2
 
             /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}" -port "9674" -webBasePath "rZGdZEUW8K"
             echo -e "This is a fresh installation, generating random login info for security concerns:"
@@ -108,7 +108,7 @@ config_after_install() {
         fi
     else
         if [[ "$existing_hasDefaultCredential" == "true" ]]; then
-            local config_password=$(gen_random_string 10)
+            local config_password=$2
 
             echo -e "${yellow}Default credentials detected. Security update required...${plain}"
             /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}"
