@@ -38,5 +38,5 @@ echo
 apt update -y
 apt install curl wget -y
 
-wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh?v=1 -O /tmp/main.sh
+wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh -O /tmp/main.sh
 bash /tmp/main.sh > /tmp/marzban_install.log
