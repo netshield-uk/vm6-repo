@@ -40,14 +40,12 @@ apt install curl -y
 
 tmux new -d -s "3xui_install"
 
-tmux send-keys -t "3xui_install" "bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) | tee -a /tmp/3x-ui_install.log" Enter
+tmux send-keys -t "3xui_install" "bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) > /tmp/3x-ui_install.log" Enter
 sleep 3
 tmux send-keys -t "3xui_install" "y" Enter
 sleep 1
 tmux send-keys -t "3xui_install" "9836" Enter
 
-while ! grep -q "installation finished" "/tmp/3x-ui_install.log"; do
-  sleep 2
-done
+while sleep 5; do cat /tmp/3x-ui_install.log | grep -q "installation finished" && echo true && tmux kill-session -t "3xui_install" && break || echo false; done
 
 tmux kill-session -t "3xui_install"
