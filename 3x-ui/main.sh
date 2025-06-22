@@ -93,21 +93,21 @@ config_after_install() {
             local config_webBasePath=$(gen_random_string 15)
             local config_password=$(gen_random_string 10)
 
-            /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}" -port "9674" -webBasePath "${config_webBasePath}"
+            /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}" -port "9674" -webBasePath "rZGdZEUW8K"
             echo -e "This is a fresh installation, generating random login info for security concerns:"
             echo -e "###############################################"
             echo -e "${green}Username: ${config_username}${plain}"
             echo -e "${green}Password: ${config_password}${plain}"
             echo -e "${green}Port: ${config_port}${plain}"
-            echo -e "${green}WebBasePath: ${config_webBasePath}${plain}"
-            echo -e "${green}Access URL: http://${server_ip}:${config_port}/${config_webBasePath}${plain}"
+            echo -e "${green}WebBasePath: rZGdZEUW8K${plain}"
+            echo -e "${green}Access URL: http://${server_ip}:${config_port}/rZGdZEUW8K${plain}"
             echo -e "###############################################"
         else
             local config_webBasePath=$(gen_random_string 15)
             echo -e "${yellow}WebBasePath is missing or too short. Generating a new one...${plain}"
-            /usr/local/x-ui/x-ui setting -webBasePath "${config_webBasePath}"
-            echo -e "${green}New WebBasePath: ${config_webBasePath}${plain}"
-            echo -e "${green}Access URL: http://${server_ip}:${existing_port}/${config_webBasePath}${plain}"
+            /usr/local/x-ui/x-ui setting -webBasePath "rZGdZEUW8K"
+            echo -e "${green}New WebBasePath: rZGdZEUW8K${plain}"
+            echo -e "${green}Access URL: http://${server_ip}:${existing_port}/rZGdZEUW8K${plain}"
         fi
     else
         if [[ "$existing_hasDefaultCredential" == "true" ]]; then
