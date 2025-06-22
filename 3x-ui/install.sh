@@ -38,4 +38,16 @@ echo
 apt update -y
 apt install curl -y
 
-bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) <<< "n" > /tmp/3x-ui_install.log 2>&1
+tmux new -d -s "3xui_install"
+
+tmux send-keys -t "3xui_install" "bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) | tee -a /tmp/3x-ui_install.log" Enter
+sleep 3
+tmux send-keys -t "3xui_install" "y" Enter
+sleep 1
+tmux send-keys -t "3xui_install" "9836" Enter
+
+while ! grep -q "x-ui v2.6.0 installation finished, it is running now..." "/tmp/3x-ui_install.log"; do
+  sleep 2
+done
+
+tmux kill-session -t "3xui_install"
