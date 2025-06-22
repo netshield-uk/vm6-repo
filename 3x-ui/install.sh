@@ -5,7 +5,7 @@
 # recipe: 3X-UI
 # tags: debian11,debian12,ubuntu2204,ubuntu2404
 # revision: 1
-# description_ru: Рецепт установки 3X-UI (доступы от панели управления находятся в /root/3x-ui.txt)
+# description_ru: 3X-UI Рецепт установки (доступы от панели управления находятся в /root/3x-ui.txt)
 # description_en: 3X-UI installation recipe (control panel accesses are in /root/3x-ui.txt)
 # metadata_end
 #
@@ -36,4 +36,6 @@ echo "=== Recipe ${RNAME} started at $(date) ==="
 echo
 
 apt update -y
-apt install tmux curl nginx -y
+apt install curl -y
+
+bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh) <<< "n" > /tmp/3x-ui_install.log 2>&1
