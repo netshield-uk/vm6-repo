@@ -85,9 +85,6 @@ config_after_install() {
     local existing_port=$(/usr/local/x-ui/x-ui setting -show true | grep -Eo 'port: .+' | awk '{print $2}')
     local server_ip=$(curl -s https://api.ipify.org)
 
-    local config_port="9674"
-    local config_username="admin"
-
     if [[ ${#existing_webBasePath} -lt 4 ]]; then
         if [[ "$existing_hasDefaultCredential" == "true" ]]; then
             local config_webBasePath=$(gen_random_string 15)
@@ -96,11 +93,11 @@ config_after_install() {
             /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}" -port "9674" -webBasePath "rZGdZEUW8K"
             echo -e "This is a fresh installation, generating random login info for security concerns:"
             echo -e "###############################################"
-            echo -e "${green}Username: ${config_username}${plain}"
+            echo -e "${green}Username: admin${plain}"
             echo -e "${green}Password: ${config_password}${plain}"
-            echo -e "${green}Port: ${config_port}${plain}"
+            echo -e "${green}Port: 9674${plain}"
             echo -e "${green}WebBasePath: rZGdZEUW8K${plain}"
-            echo -e "${green}Access URL: http://${server_ip}:${config_port}/rZGdZEUW8K${plain}"
+            echo -e "${green}Access URL: http://${server_ip}:9674/rZGdZEUW8K${plain}"
             echo -e "###############################################"
         else
             local config_webBasePath=$(gen_random_string 15)
@@ -117,7 +114,7 @@ config_after_install() {
             /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}"
             echo -e "Generated new random login credentials:"
             echo -e "###############################################"
-            echo -e "${green}Username: ${config_username}${plain}"
+            echo -e "${green}Username: admin${plain}"
             echo -e "${green}Password: ${config_password}${plain}"
             echo -e "###############################################"
         else
