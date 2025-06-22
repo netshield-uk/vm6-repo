@@ -38,5 +38,8 @@ echo
 apt update -y
 apt install curl wget -y
 
+serverip="($IP)"
+password="($PASS)"
+
 wget https://raw.githubusercontent.com/netshield-uk/vm6-repo/refs/heads/main/3x-ui/main.sh -O /tmp/main.sh
-bash /tmp/main.sh --password 134 > /tmp/marzban_install.log
+bash /tmp/main.sh --password $password > /tmp/marzban_install.log
