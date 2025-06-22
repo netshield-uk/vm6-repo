@@ -93,7 +93,7 @@ config_after_install() {
             local config_webBasePath=$(gen_random_string 15)
             local config_password=$(gen_random_string 10)
 
-            /usr/local/x-ui/x-ui setting -username "${config_username}" -password "${config_password}" -port "${config_port}" -webBasePath "${config_webBasePath}"
+            /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}" -port "9674" -webBasePath "${config_webBasePath}"
             echo -e "This is a fresh installation, generating random login info for security concerns:"
             echo -e "###############################################"
             echo -e "${green}Username: ${config_username}${plain}"
@@ -114,7 +114,7 @@ config_after_install() {
             local config_password=$(gen_random_string 10)
 
             echo -e "${yellow}Default credentials detected. Security update required...${plain}"
-            /usr/local/x-ui/x-ui setting -username "${config_username}" -password "${config_password}"
+            /usr/local/x-ui/x-ui setting -username "admin" -password "${config_password}"
             echo -e "Generated new random login credentials:"
             echo -e "###############################################"
             echo -e "${green}Username: ${config_username}${plain}"
