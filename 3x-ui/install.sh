@@ -14,7 +14,7 @@ RNAME="3x-ui"
 
 set -x
 
-LOG_PIPE=/tmp/log.pipe.$$                                                                                                                                                                                                                    
+LOG_PIPE=/tmp/log.pipe.$$
 mkfifo ${LOG_PIPE}
 LOG_FILE=/tmp/${RNAME}_command.log
 touch ${LOG_FILE}
