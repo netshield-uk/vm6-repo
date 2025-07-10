@@ -62,7 +62,7 @@ speed_test() {
     else
         ./speedtest-cli/speedtest --progress=no --server-id="$1" --accept-license --accept-gdpr >./speedtest-cli/speedtest.log 2>&1
     fi
-
+    
     if [ $? -eq 0 ]; then
         local dl_speed up_speed latency
         dl_speed=$(awk '/Download/{print $3" "$4}' ./speedtest-cli/speedtest.log)
@@ -430,6 +430,7 @@ print_end_time() {
     echo " Follow : $(_red "https://artydev.ru")"
 }
 
+# Проверка наличия необходимых утилит
 ! _exists "wget" && _red "Error: wget command not found.\n" && exit 1
 ! _exists "free" && _red "Error: free command not found.\n" && exit 1
 
@@ -448,6 +449,7 @@ fi
 [[ -z "$ipv4_check" ]] && online="$(_red "\xe2\x9c\x97 Offline")" || online="$(_green "\xe2\x9c\x93 Online")"
 [[ -z "$ipv6_check" ]] && online+=" / $(_red "\xe2\x9c\x97 Offline")" || online+=" / $(_green "\xe2\x9c\x93 Online")"
 
+# Основное выполнение скрипта
 start_time=$(date +%s)
 get_system_info
 check_virt
