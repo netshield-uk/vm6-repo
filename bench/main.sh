@@ -80,6 +80,8 @@ speed() {
     speed_test '1907' 'MTS, Moscow'
     speed_test '20197' 'MegaFon, Moscow'
     speed_test '14190' 'DOM.RU, Moscow'
+    speed_test '63864' 'LOVIT, Moscow'
+    
 }
 
 io_test() {
